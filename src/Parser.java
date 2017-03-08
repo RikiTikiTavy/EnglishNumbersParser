@@ -1,3 +1,5 @@
+import jdk.internal.cmm.SystemResourcePressureImpl;
+
 /**
  * Created by Roman on 08.03.2017.
  */
@@ -5,7 +7,7 @@ public class Parser {
 
 
 
-    public int switcher(String splitedString){
+    public int switcher(String splitedString) throws IncorrectNumberException {
             int stringNumber = 0;
 
         switch (splitedString){
@@ -38,11 +40,12 @@ public class Parser {
             case "sixty": stringNumber = 60; break;
             case "eighty": stringNumber = 80; break;
             case "ninety": stringNumber = 90; break;
+            default: throw new IncorrectNumberException();
         }
         return stringNumber;
     }
 
-    public int parse(String str){
+    public int parse(String str) throws IncorrectNumberException {
        String[] splitedString =  str.split(" ");
         int totalNumber = 0;
 

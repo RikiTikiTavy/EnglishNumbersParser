@@ -8,8 +8,6 @@ import java.util.List;
  * Created by Roman on 08.03.2017.
  */
 public class Main {
-    BufferedReader reader;
-    static boolean stop = true;
 
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -18,17 +16,15 @@ public class Main {
 
         String str;
 
-        while (stop) {
+        while (true) {
             try {
                 str = reader.readLine();
-                if(str.equals("stop")) stop = false;
+                if(str.equals("stop")) break;
                 list.add(parser.parse(str));
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException | IncorrectNumberException e) {
+                System.err.println("Wrong number. Try to write it again");
             }
         }
-
         System.out.println(list);
-
     }
 }
