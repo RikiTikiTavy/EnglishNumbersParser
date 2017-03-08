@@ -9,20 +9,26 @@ import java.util.List;
  */
 public class Main {
     BufferedReader reader;
+    static boolean stop = true;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        List list = new LinkedList<String>();
+        List list = new LinkedList<Integer>();
+        Parser parser = new Parser();
 
         String str;
-        while(true){
+
+        while (stop) {
             try {
-               str = reader.readLine();
-                list.add(str);
+                str = reader.readLine();
+                if(str.equals("stop")) stop = false;
+                list.add(parser.parse(str));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        System.out.println(list);
 
     }
 }
