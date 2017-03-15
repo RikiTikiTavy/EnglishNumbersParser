@@ -1,4 +1,4 @@
-import jdk.internal.cmm.SystemResourcePressureImpl;
+package main.java;
 
 /**
  * Created by Roman on 08.03.2017.
@@ -100,7 +100,8 @@ public class Parser {
     }
 
     public int parse(String str) throws IncorrectNumberException {
-        String[] splitedString = str.split(" ");
+
+        String[] splitedString = str.split("\\s|-");
         int totalNumber = 0;
 
         for (int i = 0; i < splitedString.length; i++) {
