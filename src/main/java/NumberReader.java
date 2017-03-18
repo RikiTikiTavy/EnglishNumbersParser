@@ -1,42 +1,42 @@
-package main.java;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
- * Created by Roman on 08.03.2017.
+ * Created by Roman on 18.03.2017.
  */
-public class NumberReader implements Runnable{
-    List list;
-    boolean flag = true;
+public class NumberReader implements Runnable {
 
-    public NumberReader(List list){
+    BufferedReader reader;
+    String str;
+    List list;
+    Parser parser;
+    Thread removeThread;
+
+    NumberReader(Thread removeThread, List list) {
+        this.removeThread = removeThread;
         this.list = list;
+        reader = new BufferedReader(new InputStreamReader(System.in));
+        parser = new Parser();
     }
 
-    @Override
-        public void run() {
-            while (flag){
-                synchronized (new Main()){
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        flag = false;
+    public void run() {
+        while (true) {
+            synchronized (this) {
+                try {
+                    str = reader.readLine();
+                    if (str.equals("stop")) {
+                        removeThread.interrupt();
+                        break;
                     }
-                    if(list.size() != 0 ){
-                        int minimum = (Integer) list.get(0);
-
-                        for(int i = 0; i < list.size(); i++){
-                            int one =  (Integer) list.get(i);
-                            if(minimum > one){
-                                minimum = one;
-                            }
-                        }
-                        System.out.println(minimum);
-                        list.remove(list.indexOf(minimum));
-                    }
-
+                    list.add(parser.parse(str));
+                } catch (IOException | IncorrectNumberException e) {
+                    System.err.println("Wrong number. Try to write it again");
                 }
+                System.out.println(list);
             }
-
         }
+    }
+
 }
