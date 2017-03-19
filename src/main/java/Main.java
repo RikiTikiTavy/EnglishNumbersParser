@@ -2,9 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-/**
- * Created by Roman on 08.03.2017.
- */
+
 public class Main {
 
 
