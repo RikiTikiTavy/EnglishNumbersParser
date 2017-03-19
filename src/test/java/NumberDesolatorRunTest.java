@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Roman on 19.03.2017.
  */
-public class NumberDesolatorTest {
+public class NumberDesolatorRunTest {
 
     Thread thread = new Thread();
 
@@ -54,16 +54,5 @@ public class NumberDesolatorTest {
         assertEquals(list.get(1), 123);
     }
 
-    @Test(timeout = 2500)
-    public void testInterruption() {
-        thread = new Thread(desolator);
-        thread.start();
 
-        try {
-            Thread.sleep(2000);
-            thread.interrupt();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }

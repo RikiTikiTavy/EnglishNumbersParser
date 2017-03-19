@@ -12,14 +12,14 @@ import static org.junit.Assert.*;
  */
 
 @RunWith(Parameterized.class)
-public class ParserTest {
+public class ParserSwitcherTest {
 
     private String input;
     private int expectedOutput;
 
     Parser parser = new Parser();
 
-  public ParserTest(String input, int expectedOutput){
+  public ParserSwitcherTest(String input, int expectedOutput){
        this.input = input;
        this.expectedOutput = expectedOutput;
    }
@@ -36,21 +36,4 @@ public class ParserTest {
     public void testSwitcher() throws IncorrectNumberException {
         assertEquals(expectedOutput, parser.switcher(input));
     }
-
-
-    @Test(expected = IncorrectNumberException.class)
-    public void testSwitcherException() throws IncorrectNumberException {
-        parser.switcher("tho");
-        parser.switcher("tree");
-        parser.switcher("seventen");
-        parser.switcher("million");
-    }
-
-    @Test()
-    public void testParse() throws IncorrectNumberException {
-        assertEquals(22, parser.parse("twenty-two"));
-        assertEquals(9263, parser.parse("nine thousand two hundred sixty-three"));
-        assertNotEquals(123, parser.parse("one thousand twenty three"));
-    }
-
 }
