@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List list = new LinkedList<Integer>();
+        List<Integer> list = new LinkedList();
 
         Thread removeThread = new Thread(new NumberDesolator(list));
         removeThread.start();

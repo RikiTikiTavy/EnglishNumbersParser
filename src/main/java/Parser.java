@@ -6,6 +6,10 @@ public class Parser {
         int stringNumber = 0;
 
         switch (splitedString.toLowerCase()) {
+
+            case "zero":
+                stringNumber = 0;
+                break;
             case "one":
                 stringNumber = 1;
                 break;
@@ -105,9 +109,11 @@ public class Parser {
             if (splitedString[i].equals("thousand")) {
                 totalNumber *= 1000;
             } else if (splitedString[i].equals("hundred")) {
-                totalNumber = switcher(splitedString[i - 1]) * 100;
+                totalNumber += switcher(splitedString[i - 1]) * 100;
 
-            } else {
+            }
+            else {
+                if (i+1 != splitedString.length && splitedString[i + 1].equals("hundred")) continue;
                 totalNumber += switcher(splitedString[i]);
             }
         }
